@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sailing_rules/blocs/signals_selection/signals_selection_cubit.dart';
-import 'package:sailing_rules/models/race_flag_model.dart';
-
+import '../models/race_flag_model.dart';
 import '../utilities/responsive_adaptive_class.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class OtherSignalsScreen extends StatefulWidget {
+  const OtherSignalsScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<OtherSignalsScreen> createState() => _OtherSignalsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _OtherSignalsScreenState extends State<OtherSignalsScreen> {
   final ResponsiveAdaptiveClass responsiveAdaptiveClass = ResponsiveAdaptiveClass();
   final RaceFlagModelClass raceFlagModelClass = RaceFlagModelClass();
 
@@ -38,15 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: const Icon(
-              Icons.description_outlined,
-              // color: Colors.white,
-            ),
-            // iconSize: 40.0,
-            onPressed: () {
-              context.read<SignalsSelectionCubit>().setSignalsSelectionChoice('postponement');
-              context.go('/results_screen');
-            }),
+          icon: const Icon(
+            Icons.description_outlined,
+            // color: Colors.white,
+          ),
+          // iconSize: 40.0,
+          onPressed: () => context.go('/definition_screen'),
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -58,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
         title: Text(
-          'Postponement Signals',
+          'Racing Signals - Postponement',
           style: TextStyle(
               fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
                   responsiveAdaptiveClass.selectAppBarTitleFontSize()),
@@ -109,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: double.infinity,
                     child: Row(
                       children: [
+                        // White half with local image
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
@@ -152,8 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   raceFlagModelClass.raceFlagTextPostponementSignals[index],
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: responsiveAdaptiveClass.classFontSize =
-                                        responsiveAdaptiveClass.selectFontSize(),
+                                    fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

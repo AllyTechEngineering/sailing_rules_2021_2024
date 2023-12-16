@@ -262,7 +262,7 @@ class ResponsiveAdaptiveClass {
       // iPhones: 390 w to 430 w x 844 h to 932 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 390 && width <= 430) && (height >= 844 && height <= 932))) {
-        classImageWidth = width * 0.08;
+        classImageWidth = width * 0.3;
         // debugPrint('390 w x 932 h Portrait classImageWidth: $classImageWidth');
         return classImageWidth;
       } else if ((orientation == Orientation.landscape) && (width >= 844 && height <= 430)) {
@@ -310,7 +310,7 @@ class ResponsiveAdaptiveClass {
       // iPhones: 390 w to 430 w x 844 h to 932 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 390 && width <= 430) && (height >= 844 && height <= 932))) {
-        elevatedButtonHeight = height / 18.0;
+        elevatedButtonHeight = height / 8.0;
         return elevatedButtonHeight;
       } else if ((orientation == Orientation.landscape) && (width >= 844 && height <= 430)) {
         elevatedButtonHeight = height / 6.6;
@@ -349,7 +349,7 @@ class ResponsiveAdaptiveClass {
   double selectElevatedButtonWidth() {
     if (Platform.isIOS) {
       if (orientation == Orientation.portrait) {
-        elevatedButtonWidth = width * 0.7;
+        elevatedButtonWidth = width * 1;
         return elevatedButtonWidth;
       } else if (orientation == Orientation.landscape) {
         elevatedButtonWidth = width * 0.60;

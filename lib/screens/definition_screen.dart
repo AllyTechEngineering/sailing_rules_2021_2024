@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sailing_rules/screens/home_screen.dart';
+import '../models/race_flag_model.dart';
+import '../utilities/responsive_adaptive_class.dart';
 
 class DefinitionScreen extends StatefulWidget {
   const DefinitionScreen({super.key});

@@ -71,6 +71,13 @@ flutter:
     - lib/assets/images/postponement_signals/
     - lib/assets/images/preparatory_signals/
     - lib/assets/images/recall_signals/
+    - lib/assets/images/ocean_background.png
+    - lib/assets/json_data_files/abandonment_signals.json
+    - lib/assets/json_data_files/changing_next_leg.json
+    - lib/assets/json_data_files/other_signals.json
+    - lib/assets/json_data_files/postponement_signals.json
+    - lib/assets/json_data_files/preparatory_signals.json
+    - lib/assets/json_data_files/recall_signals.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
