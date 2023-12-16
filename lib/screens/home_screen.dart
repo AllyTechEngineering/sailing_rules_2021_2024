@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sailing_rules/blocs/signals_selection/signals_selection_cubit.dart';
 import 'package:sailing_rules/models/race_flag_model.dart';
+import 'package:sailing_rules/screens/results_screen.dart';
 
 import '../utilities/responsive_adaptive_class.dart';
 
@@ -25,6 +26,32 @@ class _HomeScreenState extends State<HomeScreen> {
   double elevatedButtonHeight = 0.0;
   double classImageHeight = 0.0;
   double classImageWidth = 0.0;
+
+  final signalsNames = <String>[
+    'postponement',
+    'abandonment',
+    'preparatory',
+    'recall',
+    'changingNextLeg',
+    'other',
+  ];
+  final signalsTitles = <String>[
+    'Postponement Signals',
+    'Abandonment Signals',
+    'Preparatory Signals',
+    'Recall Signals',
+    'Changing the Next Leg',
+    'Other Signals',
+  ];
+  final signalsImage = <String>[
+    'lib/assets/images/postponement_signals/ap_with_signals.png',
+    'lib/assets/images/abandonment_signals/n_with_signals.png',
+    'lib/assets/images/preparatory_signals/p_with_signals.png',
+    'lib/assets/images/recall_signals/x_with_signals.png',
+    'lib/assets/images/changing_next_leg/c_with_signals.png',
+    'lib/assets/images/other_signals/l_with_signals.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     String flagTest = raceFlagModelClass.raceFlagImagePreparatorySignals[0];
@@ -44,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             // iconSize: 40.0,
             onPressed: () {
-              context.read<SignalsSelectionCubit>().setSignalsSelectionChoice('postponement');
-              context.go('/results_screen');
+              // context.read<SignalsSelectionCubit>().setSignalsSelectionChoice('postponement');
+              context.go('/definition_screen');
             }),
         actions: <Widget>[
           IconButton(
@@ -58,13 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
         title: Text(
-          'Postponement Signals',
+          'Racing Signals',
           style: TextStyle(
               fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
                   responsiveAdaptiveClass.selectAppBarTitleFontSize()),
         ),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('lib/assets/images/ocean_background.png'),
               fit: BoxFit.fill,
@@ -79,22 +106,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 image: AssetImage('lib/assets/images/ocean_background.png'),
                 fit: BoxFit.cover)),
         child: ListView.builder(
-          itemCount: raceFlagModelClass.raceFlagImagePostponementSignals.length,
+          itemCount: signalsTitles.length,
           itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    final snackBar = SnackBar(
-                      duration: Duration(seconds: 4),
-                      content: Text(
-                        raceFlagModelClass.raceFlagExplanationTextPostponementSignals[index],
-                        style: TextStyle(fontSize: 30.0),
-                      ),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    context
+                        .read<SignalsSelectionCubit>()
+                        .setSignalsSelectionChoice(signalsNames[index]);
+                    setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ResultsScreen(),
+                        ),
+                      );
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 10.0,
@@ -120,8 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Image.asset(
-                                raceFlagModelClass.raceFlagImagePostponementSignals[
-                                    index], // Replace with your actual image path
+                                signalsImage[index], // Replace with your actual image path
                                 fit: BoxFit.scaleDown,
                               ),
                             ),
@@ -149,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  raceFlagModelClass.raceFlagTextPostponementSignals[index],
+                                  signalsTitles[index],
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: responsiveAdaptiveClass.classFontSize =
@@ -173,3 +202,46 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+/*
+                  style: ElevatedButton.styleFrom(
+                      elevation: 10.0,
+                      // fixedSize: Size((width * 0.75), (height / 5.5)),
+                      fixedSize: Size(
+                          responsiveAdaptiveClass.elevatedButtonWidth =
+                              responsiveAdaptiveClass.selectElevatedButtonWidth(),
+                          responsiveAdaptiveClass.elevatedButtonHeight =
+                              responsiveAdaptiveClass.selectElevatedButtonHeight()),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 3.0, style: BorderStyle.solid),
+                        borderRadius: BorderRadius.circular(35.0),
+                      ),
+                      backgroundColor: Colors.transparent),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+                        child: Image.asset(
+                          signalsImage[index],
+                          height: classImageHeight =
+                              responsiveAdaptiveClass.selectClassImageHeight(),
+                          width: classImageWidth = responsiveAdaptiveClass.selectClassImageWidth(),
+                          fit: BoxFit.fill,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        signalsTitles[index],
+                        // overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.start,
+                        // softWrap: true,
+                        style: TextStyle(
+                            fontSize: responsiveAdaptiveClass.classFontSize =
+                                responsiveAdaptiveClass.selectFontSize(),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+ */

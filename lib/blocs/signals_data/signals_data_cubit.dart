@@ -28,7 +28,8 @@ class SignalsDataCubit extends Cubit<SignalsDataState> {
   }
 
   void getSignalsDataResults() async {
-    // List<SignalsDataModel> _filteredList;
+    debugPrint(
+        'in SginalsDataCubit: signalsSelectionCubit.state.signalsSelectionChoice.name: ${signalsSelectionCubit.state.signalsSelectionChoice.name}');
     try {
       emit(
         LoadingSignalsDataState(),

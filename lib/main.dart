@@ -103,9 +103,10 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<SignalsDataCubit>(
             create: (context) => SignalsDataCubit(
-                signalsRepository: SignalsRepository(),
-                signalsSelectionCubit: SignalsSelectionCubit()),
-          )
+              signalsRepository: SignalsRepository(),
+              signalsSelectionCubit: context.read<SignalsSelectionCubit>(),
+            ),
+          ),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

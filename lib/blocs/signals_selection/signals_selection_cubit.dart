@@ -8,6 +8,8 @@ class SignalsSelectionCubit extends Cubit<SignalsSelectionState> {
   SignalsSelectionCubit() : super(SignalsSelectionState.initial());
 
   void setSignalsSelectionChoice(String signalsSelectionChoice) {
+    debugPrint(
+        'in signals_selection_cubit before if: signalsSelectionChoice: $signalsSelectionChoice');
     if (signalsSelectionChoice == SignalsSelectionChoice.postponement.name) {
       debugPrint('in signals_selection_cubit if postponement: $signalsSelectionChoice');
       emit(state.copyWith(signalsSelectionChoice: SignalsSelectionChoice.postponement));

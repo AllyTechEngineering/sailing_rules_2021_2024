@@ -38,14 +38,14 @@ class _ResultsScreenState extends State<ResultsScreen> {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.description_outlined,
-                // color: Colors.white,
-              ),
-              // iconSize: 40.0,
-              onPressed: () => context.go('/definition_screen'),
-            ),
+            // leading: IconButton(
+            //   icon: const Icon(
+            //     Icons.description_outlined,
+            //     // color: Colors.white,
+            //   ),
+            //   // iconSize: 40.0,
+            //   onPressed: () => context.go('/definition_screen'),
+            // ),
             actions: <Widget>[
               IconButton(
                 icon: const Icon(
@@ -57,13 +57,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
             ],
             centerTitle: true,
             title: Text(
-              'Race Signals',
+              textLabel(),
               style: TextStyle(
                   fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
                       responsiveAdaptiveClass.selectAppBarTitleFontSize()),
             ),
             flexibleSpace: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('lib/assets/images/ocean_background.png'),
                   fit: BoxFit.fill,
@@ -83,19 +83,20 @@ class _ResultsScreenState extends State<ResultsScreen> {
               builder: (context, state) {
                 if (state is LoadingSignalsDataState) {
                   debugPrint('in results if LoadingSignalsDataState and showing state: $state');
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is ErrorSignalsDataState) {
-                  return Center(
+                  return const Center(
                     child: Text(
                       'File Error',
                       style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
                     ),
                   );
                 } else if (state is LoadedSignalsDataState) {
-                  final signalsResultsListValue = state.signalsData;
-                  debugPrint('in data_list_screen showing results: $signalsResultsListValue');
+                  final signalsResultsListValue = state.loadedSignalsData;
+                  // debugPrint('in ResultsScreen signalsResultsListValue: $signalsResultsListValue');
+                  // debugPrint('in ResultsScreen state: $state');
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: signalsResultsListValue.length,
@@ -110,7 +111,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 duration: Duration(seconds: 4),
                                 content: Text(
                                   signalsResultsListValue[index].description,
-                                  style: TextStyle(fontSize: 30.0),
+                                  style: const TextStyle(fontSize: 30.0),
                                 ),
                               );
                               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -119,7 +120,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                               elevation: 10.0,
                               padding: EdgeInsets.zero,
                               shape: RoundedRectangleBorder(
-                                side: BorderSide(width: 3.0, style: BorderStyle.solid),
+                                side: const BorderSide(width: 3.0, style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(35.0),
                               ),
                             ),
@@ -130,7 +131,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.horizontal(
                                           left: Radius.circular(35.0),
@@ -207,6 +208,33 @@ class _ResultsScreenState extends State<ResultsScreen> {
         );
       },
     );
+  }
+
+  String textLabel() {
+    /*
+      postponement,
+  abandonment,
+  preparatory,
+  recall,
+  changingNextLeg,
+  other,
+     */
+    String tempValue = context.watch<SignalsSelectionCubit>().state.signalsSelectionChoice.name;
+    // debugPrint('This is a test of printing the DataModel toString: $dataModel');
+    if (tempValue == 'postponement') {
+      tempValue = 'Postponement Signals';
+    } else if (tempValue == 'abandonment') {
+      tempValue = 'Abandonment Signals';
+    } else if (tempValue == 'preparatory') {
+      tempValue = 'Preparatory Signals';
+    } else if (tempValue == 'recall') {
+      tempValue = 'Recall Signals';
+    } else if (tempValue == 'changingNextLeg') {
+      tempValue = 'Change Next Leg Signals';
+    } else if (tempValue == 'other') {
+      tempValue = 'Other Signals';
+    }
+    return tempValue;
   }
 }
 // child: ListView.builder(

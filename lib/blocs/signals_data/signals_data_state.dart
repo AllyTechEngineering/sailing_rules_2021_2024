@@ -14,16 +14,16 @@ class LoadingSignalsDataState extends SignalsDataState {
 
 class LoadedSignalsDataState extends SignalsDataState {
   LoadedSignalsDataState(
-    this.signalsData,
+    this.loadedSignalsData,
   );
 
-  final List<SignalsDataModel> signalsData;
+  final List<SignalsDataModel> loadedSignalsData;
 
   @override
-  List<Object> get props => [signalsData];
+  List<Object> get props => [loadedSignalsData];
 
   @override
-  String toString() => 'LoadedSignalsDataState(signalsData: $signalsData)';
+  String toString() => 'LoadedSignalsDataState(signalsData: $loadedSignalsData)';
 }
 
 class ErrorSignalsDataState extends SignalsDataState {
