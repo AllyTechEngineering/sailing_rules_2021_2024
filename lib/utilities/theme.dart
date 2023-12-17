@@ -8,6 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 /// medium 0xFF64CCC5
 /// light 0xFFEEEEEE
 String fontValue = 'GoogleFonts.roboto()';
+
+double calculateAdjustedFontSize(double baseFontSize, BuildContext context) {
+  return baseFontSize * MediaQuery.of(context).textScaleFactor;
+}
+
 final appTheme = ThemeData(
   useMaterial3: true,
   fontFamily: GoogleFonts.roboto().fontFamily,

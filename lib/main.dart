@@ -4,14 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:sailing_rules/blocs/signals_data/signals_data_cubit.dart';
 import 'package:sailing_rules/blocs/signals_selection/signals_selection_cubit.dart';
 import 'package:sailing_rules/repositories/signals_repository.dart';
-import 'package:sailing_rules/screens/abandonment_signals_screen.dart';
-import 'package:sailing_rules/screens/changing_next_leg_signals_screen.dart';
+// import 'package:sailing_rules/screens/abandonment_signals_screen.dart';
+// import 'package:sailing_rules/screens/changing_next_leg_signals_screen.dart';
 import 'package:sailing_rules/screens/definition_screen.dart';
 import 'package:sailing_rules/screens/home_screen.dart';
-import 'package:sailing_rules/screens/other_signals_screen.dart';
-import 'package:sailing_rules/screens/postponement_signals_screen.dart';
-import 'package:sailing_rules/screens/preparatory_signals_screen.dart';
-import 'package:sailing_rules/screens/recall_signals_screen.dart';
+// import 'package:sailing_rules/screens/other_signals_screen.dart';
+// import 'package:sailing_rules/screens/postponement_signals_screen.dart';
+// import 'package:sailing_rules/screens/preparatory_signals_screen.dart';
+// import 'package:sailing_rules/screens/recall_signals_screen.dart';
 import 'package:sailing_rules/screens/results_screen.dart';
 import 'package:sailing_rules/screens/settings_screen.dart';
 import 'package:sailing_rules/utilities/theme.dart';
@@ -41,42 +41,42 @@ final GoRouter _router = GoRouter(
             return const ResultsScreen();
           },
         ),
-        GoRoute(
-          path: 'postponement_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const PostponementSignalsScreen();
-          },
-        ),
-        GoRoute(
-          path: 'abandonment_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const AbandonmentSignalsScreen();
-          },
-        ),
-        GoRoute(
-          path: 'preparatory_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const PreparatorySignalsScreen();
-          },
-        ),
-        GoRoute(
-          path: 'recall_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const RecallSignalsScreen();
-          },
-        ),
-        GoRoute(
-          path: 'changing_next_leg_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const ChangingNextLegSignalsScreen();
-          },
-        ),
-        GoRoute(
-          path: 'other_signals_screen',
-          builder: (BuildContext context, GoRouterState state) {
-            return const OtherSignalsScreen();
-          },
-        ),
+        // GoRoute(
+        //   path: 'postponement_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const PostponementSignalsScreen();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: 'abandonment_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const AbandonmentSignalsScreen();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: 'preparatory_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const PreparatorySignalsScreen();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: 'recall_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const RecallSignalsScreen();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: 'changing_next_leg_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const ChangingNextLegSignalsScreen();
+        //   },
+        // ),
+        // GoRoute(
+        //   path: 'other_signals_screen',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const OtherSignalsScreen();
+        //   },
+        // ),
         GoRoute(
           path: 'settings_screen',
           builder: (BuildContext context, GoRouterState state) {
@@ -112,7 +112,13 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routerConfig: _router,
           title: 'Sailing Racing Rules',
-          theme: appTheme,
+          theme: appTheme.copyWith(
+            textTheme: appTheme.textTheme.copyWith(
+              bodyLarge: appTheme.textTheme.bodyLarge?.copyWith(
+                fontSize: calculateAdjustedFontSize(24.0, context),
+              ),
+            ),
+          ),
         ),
       ),
     );

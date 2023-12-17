@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../blocs/signals_data/signals_data_cubit.dart';
 import '../blocs/signals_selection/signals_selection_cubit.dart';
-import '../models/race_flag_model.dart';
+// import '../models/race_flag_model.dart';
 import '../utilities/responsive_adaptive_class.dart';
 
 class ResultsScreen extends StatefulWidget {
@@ -15,7 +15,6 @@ class ResultsScreen extends StatefulWidget {
 
 class _ResultsScreenState extends State<ResultsScreen> {
   final ResponsiveAdaptiveClass responsiveAdaptiveClass = ResponsiveAdaptiveClass();
-  final RaceFlagModelClass raceFlagModelClass = RaceFlagModelClass();
 
   var orientation, size, height, width;
   double fontSizeValue = 0.0;
@@ -38,14 +37,6 @@ class _ResultsScreenState extends State<ResultsScreen> {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            // leading: IconButton(
-            //   icon: const Icon(
-            //     Icons.description_outlined,
-            //     // color: Colors.white,
-            //   ),
-            //   // iconSize: 40.0,
-            //   onPressed: () => context.go('/definition_screen'),
-            // ),
             actions: <Widget>[
               IconButton(
                 icon: const Icon(
@@ -60,7 +51,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
               textLabel(),
               style: TextStyle(
                   fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
-                      responsiveAdaptiveClass.selectAppBarTitleFontSize()),
+                      responsiveAdaptiveClass.selectAppBarTitleFontSize(1.0)),
             ),
             flexibleSpace: Container(
               decoration: const BoxDecoration(
@@ -73,12 +64,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
           ),
           body: Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                opacity: 1.0,
-                image: AssetImage('lib/assets/images/ocean_background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+                image: DecorationImage(
+                    opacity: 1.0,
+                    image: AssetImage('lib/assets/images/ocean_background.png'),
+                    fit: BoxFit.cover)),
             child: BlocBuilder<SignalsDataCubit, SignalsDataState>(
               builder: (context, state) {
                 if (state is LoadingSignalsDataState) {
@@ -87,16 +76,17 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is ErrorSignalsDataState) {
-                  return const Center(
+                  return Center(
                     child: Text(
                       'File Error',
-                      style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
+                      style: TextStyle(
+                          fontSize: responsiveAdaptiveClass.classFontSize =
+                              responsiveAdaptiveClass.selectFontSize(1.0),
+                          color: Colors.redAccent),
                     ),
                   );
                 } else if (state is LoadedSignalsDataState) {
                   final signalsResultsListValue = state.loadedSignalsData;
-                  // debugPrint('in ResultsScreen signalsResultsListValue: $signalsResultsListValue');
-                  // debugPrint('in ResultsScreen state: $state');
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: signalsResultsListValue.length,
@@ -151,13 +141,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                   // Dark blue gradient with white text
                                   Expanded(
                                     child: Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         gradient: LinearGradient(
                                           begin: Alignment.centerLeft,
                                           end: Alignment.centerRight,
                                           colors: [
-                                            Colors.blue.shade300,
-                                            Colors.blue.shade900,
+                                            Color(0xFF2D9596),
+                                            Color(0xFF265073),
                                           ],
                                           stops: [0.0, 1.0],
                                         ),
@@ -166,25 +156,31 @@ class _ResultsScreenState extends State<ResultsScreen> {
                                         ),
                                       ),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            signalsResultsListValue[index].title,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: responsiveAdaptiveClass.classFontSize =
-                                                  responsiveAdaptiveClass.selectFontSize(),
-                                              fontWeight: FontWeight.bold,
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              signalsResultsListValue[index].title,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: responsiveAdaptiveClass.classFontSize =
+                                                    responsiveAdaptiveClass.selectFontSize(1.0),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
-                                          Text(
-                                            signalsResultsListValue[index].description,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: responsiveAdaptiveClass.classFontSize =
-                                                  responsiveAdaptiveClass.selectFontSize(),
-                                              fontWeight: FontWeight.bold,
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 0.0),
+                                            child: Text(
+                                              signalsResultsListValue[index].description,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: responsiveAdaptiveClass.classFontSize =
+                                                    responsiveAdaptiveClass.selectFontSize(1.0),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -210,6 +206,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
     );
   }
 
+  ///6448758150
   String textLabel() {
     /*
       postponement,

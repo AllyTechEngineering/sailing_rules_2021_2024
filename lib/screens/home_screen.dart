@@ -85,10 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
         title: Text(
-          'Racing Signals',
+          'Sailing Racing Signals',
           style: TextStyle(
               fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
-                  responsiveAdaptiveClass.selectAppBarTitleFontSize()),
+                  responsiveAdaptiveClass.selectAppBarTitleFontSize(1.0)),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -138,6 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 150.0, // Adjust the height as needed
                     width: double.infinity,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Container(
@@ -165,10 +167,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                                 colors: [
-                                  Colors.blue.shade300,
-                                  Colors.blue.shade900,
+                                  Color(0xFF2D9596),
+                                  Color(0xFF265073),
                                 ],
-                                stops: [0.0, 1.0],
+                                stops: [0.0, 0.9],
                               ),
                               borderRadius: BorderRadius.horizontal(
                                 right: Radius.circular(35.0),
@@ -182,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: responsiveAdaptiveClass.classFontSize =
-                                        responsiveAdaptiveClass.selectFontSize(),
+                                        responsiveAdaptiveClass.selectFontSize(1.0),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

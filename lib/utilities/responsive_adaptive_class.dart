@@ -39,69 +39,69 @@ class ResponsiveAdaptiveClass {
     }
   }
 
-  double selectFontSize() {
+  double selectFontSize(double scaleFactor) {
     if (Platform.isIOS) {
       // small iPhones: 375 w x 667 h
       if ((orientation == Orientation.portrait) && (width >= 375 && height <= 667)) {
-        classFontSize = 14.0;
+        classFontSize = 14.0 * scaleFactor;
         return classFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 667 && height <= 375)) {
-        classFontSize = 14.0;
+        classFontSize = 14.0 * scaleFactor;
         return classFontSize;
       }
       // small iPhones: 375 w x 812 h
       if ((orientation == Orientation.portrait) && (width >= 375 && height <= 812)) {
-        classFontSize = 18.0;
+        classFontSize = 18.0 * scaleFactor;
         return classFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 812 && height <= 375)) {
-        classFontSize = 18.0;
+        classFontSize = 18.0 * scaleFactor;
         return classFontSize;
       }
       // iPhones: 390 w to 430 w x 844 h to 932 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 390 && width <= 430) && (height >= 844 && height <= 932))) {
-        classFontSize = 16.0;
+        classFontSize = 20.0 * scaleFactor;
         // debugPrint('390 w x 932 h Portrait classFontSize: $classFontSize');
         return classFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 844 && height <= 430)) {
-        classFontSize = 18.0;
+        classFontSize = 18.0 * scaleFactor;
         // debugPrint('390 w x 932 h Landscape classFontSize: $classFontSize');
         return classFontSize;
       }
       // iPads: 744 w to 834 w x 1024 h to 1194 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 744 && width <= 834) && (height >= 1024 && height <= 1194))) {
-        classFontSize = 20.0;
+        classFontSize = 20.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait classFontSize: $classFontSize');
         return classFontSize;
       } else if ((orientation == Orientation.landscape) &&
           ((height >= 744 && height <= 834) && (width >= 1024 && width <= 1194))) {
-        classFontSize = 22.0;
+        classFontSize = 22.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $classFontSize');
         return classFontSize;
       }
       // iPads: 1024 w x 1366 h
       if ((orientation == Orientation.portrait) && ((width >= 1024) && (height <= 1366))) {
-        classFontSize = 30.0;
+        classFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait classFontSize: $classFontSize');
         return classFontSize;
       } else if ((orientation == Orientation.landscape) && ((height >= 1366) && (width <= 1024))) {
-        classFontSize = 30.0;
+        classFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $classFontSize');
         return classFontSize;
       }
       //macOS
       if ((orientation == Orientation.portrait) && ((width >= 800) && (height <= 600))) {
-        classFontSize = 30.0;
+        classFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait classFontSize: $classFontSize');
         return classFontSize;
       } else if ((orientation == Orientation.landscape) && ((height >= 600) && (width <= 800))) {
-        classFontSize = 30.0;
+        classFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $classFontSize');
         return classFontSize;
@@ -111,68 +111,68 @@ class ResponsiveAdaptiveClass {
     return classFontSize;
   }
 
-  double selectAppBarTitleFontSize() {
-    if (Platform.isIOS || Platform.isMacOS) {
+  double selectAppBarTitleFontSize(double scaleFactor) {
+    if (Platform.isIOS) {
       // small iPhones: 375 w x 667 h
       if ((orientation == Orientation.portrait) && (width >= 375 && height <= 667)) {
-        appBarTitleFontSize = 18.0;
+        appBarTitleFontSize = 18.0 * scaleFactor;
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 667 && height <= 375)) {
-        appBarTitleFontSize = 22.0;
+        appBarTitleFontSize = 22.0 * scaleFactor;
         return appBarTitleFontSize;
       }
       // iPhones: 375 w x 812 h
       if ((orientation == Orientation.portrait) && (width >= 375 && height <= 812)) {
-        appBarTitleFontSize = 20.0;
+        appBarTitleFontSize = 20.0 * scaleFactor;
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 812 && height <= 375)) {
-        appBarTitleFontSize = 22.0;
+        appBarTitleFontSize = 22.0 * scaleFactor;
         return appBarTitleFontSize;
       }
       // iPhones: 390 w to 430 w x 844 h to 932 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 390 && width <= 430) && (height >= 844 && height <= 932))) {
-        appBarTitleFontSize = 16.0;
+        appBarTitleFontSize = 20.0 * scaleFactor;
         // debugPrint('390 w x 932 h Portrait appBarTitleFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) && (width >= 844 && height <= 430)) {
-        appBarTitleFontSize = 18.0;
+        appBarTitleFontSize = 18.0 * scaleFactor;
         // debugPrint('390 w x 932 h Landscape appBarTitleFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       }
       // iPads: 744 w to 834 w x 1024 h to 1194 h
       if ((orientation == Orientation.portrait) &&
           ((width >= 744 && width <= 834) && (height >= 1024 && height <= 1194))) {
-        appBarTitleFontSize = 20.0;
+        appBarTitleFontSize = 20.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait appBarTitleFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) &&
           ((height >= 744 && height <= 834) && (width >= 1024 && width <= 1194))) {
-        appBarTitleFontSize = 22.0;
+        appBarTitleFontSize = 22.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       }
       // iPads: 1024 w x 1366 h
       if ((orientation == Orientation.portrait) && ((width >= 1024) && (height <= 1366))) {
-        appBarTitleFontSize = 30.0;
+        appBarTitleFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait appBarTitleFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) && ((height >= 1366) && (width <= 1024))) {
-        appBarTitleFontSize = 30.0;
+        appBarTitleFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       }
       if ((orientation == Orientation.portrait) && ((width >= 800) && (height <= 600))) {
-        appBarTitleFontSize = 30.0;
+        appBarTitleFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Portrait appBarTitleFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
       } else if ((orientation == Orientation.landscape) && ((height >= 600) && (width <= 800))) {
-        appBarTitleFontSize = 30.0;
+        appBarTitleFontSize = 30.0 * scaleFactor;
         // debugPrint(
         //     'iPads: 744 w to 834 w x 1024 h to 1194 h Landscape classFontSize: $appBarTitleFontSize');
         return appBarTitleFontSize;
@@ -183,7 +183,7 @@ class ResponsiveAdaptiveClass {
   }
 
   double selectClassImageHeight() {
-    if (Platform.isIOS || Platform.isMacOS) {
+    if (Platform.isIOS) {
       // small iPhones: 375 w x 667 h
       if ((orientation == Orientation.portrait) && (width >= 375 && height <= 667)) {
         classImageHeight = height * 0.12;

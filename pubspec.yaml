@@ -78,6 +78,7 @@ flutter:
     - lib/assets/json_data_files/postponement_signals.json
     - lib/assets/json_data_files/preparatory_signals.json
     - lib/assets/json_data_files/recall_signals.json
+    - lib/assets/images/ICS-flags.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
