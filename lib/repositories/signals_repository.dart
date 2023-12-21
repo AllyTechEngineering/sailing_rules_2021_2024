@@ -7,7 +7,7 @@ import 'package:sailing_rules/models/signals_data_model.dart';
 class SignalsRepository {
   Future<List<SignalsDataModel>> getSignalsData(String jsonFileName, String signalsName) async {
     try {
-      debugPrint('in repo and this is the json file name: $jsonFileName');
+      // debugPrint('in repo and this is the json file name: $jsonFileName');
       final String signalsDataResults = await rootBundle.loadString(jsonFileName);
       // debugPrint('in repo and this is the json raw file data: $signalsDataResults');
       final signalsDataResultsJson = await jsonDecode(signalsDataResults);

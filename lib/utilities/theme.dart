@@ -49,7 +49,7 @@ final appTheme = ThemeData(
       color: Color(0xFF34495E),
     ),
   ),
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     actionsIconTheme: IconThemeData(
       size: 40.0,
       weight: 400.0,
@@ -75,19 +75,19 @@ final appTheme = ThemeData(
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
       fontSize: 24,
-      color: Color(0xFFFFFFFF),
+      color: const Color(0xFFFFFFFF),
     ),
     bodyMedium: GoogleFonts.roboto(
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 12,
-      color: Color(0xFF000000),
+      color: const Color(0xFF000000),
     ),
     bodySmall: GoogleFonts.roboto(
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
       fontSize: 10,
-      color: Color(0xFFFFFFFF),
+      color: const Color(0xFFFFFFFF),
     ),
     displayLarge: GoogleFonts.roboto(
       fontStyle: FontStyle.normal,
@@ -128,7 +128,7 @@ final appTheme = ThemeData(
   ),
   listTileTheme: ListTileThemeData(
     dense: true,
-    visualDensity: VisualDensity(vertical: -3, horizontal: -3),
+    visualDensity: const VisualDensity(vertical: -3, horizontal: -3),
     textColor: Colors.white,
     titleTextStyle: GoogleFonts.roboto(
       fontStyle: FontStyle.normal,
@@ -143,7 +143,7 @@ final appTheme = ThemeData(
         color: const Color(0xFFEEEEEE)),
     tileColor: const Color(0xFF053B50),
     shape: RoundedRectangleBorder(
-      side: BorderSide(width: 2),
+      side: const BorderSide(width: 2),
       borderRadius: BorderRadius.circular(10),
       //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
     ),

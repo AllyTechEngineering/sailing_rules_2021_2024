@@ -28,8 +28,8 @@ class SignalsDataCubit extends Cubit<SignalsDataState> {
   }
 
   void getSignalsDataResults() async {
-    debugPrint(
-        'in SginalsDataCubit: signalsSelectionCubit.state.signalsSelectionChoice.name: ${signalsSelectionCubit.state.signalsSelectionChoice.name}');
+    // debugPrint(
+    //     'in SginalsDataCubit: signalsSelectionCubit.state.signalsSelectionChoice.name: ${signalsSelectionCubit.state.signalsSelectionChoice.name}');
     try {
       emit(
         LoadingSignalsDataState(),
@@ -37,32 +37,32 @@ class SignalsDataCubit extends Cubit<SignalsDataState> {
       if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'postponement') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/postponement_signals.json', 'PostponementSignals');
-        debugPrint('in signals_data_cubit: postponement');
+        // debugPrint('in signals_data_cubit: postponement');
         emit(LoadedSignalsDataState(signalsResultDataList));
       } else if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'abandonment') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/abandonment_signals.json', 'AbandonmentSignals');
-        debugPrint('in signals_data_cubit: abandonment');
+        // debugPrint('in signals_data_cubit: abandonment');
         emit(LoadedSignalsDataState(signalsResultDataList));
       } else if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'preparatory') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/preparatory_signals.json', 'PreparatorySignals');
-        debugPrint('in signals_data_cubit: preparatory');
+        // debugPrint('in signals_data_cubit: preparatory');
         emit(LoadedSignalsDataState(signalsResultDataList));
       } else if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'recall') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/recall_signals.json', 'RecallSignals');
-        debugPrint('in signals_data_cubit: recall');
+        // debugPrint('in signals_data_cubit: recall');
         emit(LoadedSignalsDataState(signalsResultDataList));
       } else if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'changingNextLeg') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/changing_next_leg.json', 'ChangingNextLegSignals');
-        debugPrint('in signals_data_cubit: changingNextLeg');
+        // debugPrint('in signals_data_cubit: changingNextLeg');
         emit(LoadedSignalsDataState(signalsResultDataList));
       } else if (signalsSelectionCubit.state.signalsSelectionChoice.name == 'other') {
         final signalsResultDataList = await signalsRepository.getSignalsData(
             'lib/assets/json_data_files/other_signals.json', 'OtherSignals');
-        debugPrint('in signals_data_cubit: other');
+        // debugPrint('in signals_data_cubit: other');
         emit(LoadedSignalsDataState(signalsResultDataList));
       }
     } catch (e) {

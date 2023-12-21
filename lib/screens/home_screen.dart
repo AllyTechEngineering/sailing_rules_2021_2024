@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final ResponsiveAdaptiveClass responsiveAdaptiveClass = ResponsiveAdaptiveClass();
   final RaceFlagModelClass raceFlagModelClass = RaceFlagModelClass();
 
-  var orientation, size, height, width;
+  dynamic orientation, size, height, width;
   double fontSizeValue = 0.0;
   double classFontSize = 0.0;
   double appBarTitleFontSize = 0.0;
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String flagTest = raceFlagModelClass.raceFlagImagePreparatorySignals[0];
+    // String flagTest = raceFlagModelClass.raceFlagImagePreparatorySignals[0];
 
     responsiveAdaptiveClass.orientation = MediaQuery.of(context).orientation;
     responsiveAdaptiveClass.size = MediaQuery.of(context).size;
@@ -62,141 +62,157 @@ class _HomeScreenState extends State<HomeScreen> {
     responsiveAdaptiveClass.width = responsiveAdaptiveClass.size.width;
     debugPrint(
         'HomeScreen orientation: ${MediaQuery.of(context).orientation}\nHeight: ${responsiveAdaptiveClass.size.height}\nWidth: ${responsiveAdaptiveClass.size.width}');
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(
-              Icons.description_outlined,
-              // color: Colors.white,
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      child: Scaffold(
+        // backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: IconButton(
+              icon: const Icon(
+                Icons.description_outlined,
+                // color: Colors.white,
+              ),
+              // iconSize: 40.0,
+              onPressed: () {
+                // context.read<SignalsSelectionCubit>().setSignalsSelectionChoice('postponement');
+                context.go('/definition_screen');
+              }),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.settings,
+                // color: Colors.white,
+              ),
+              onPressed: () => context.go('/settings_screen'),
             ),
-            // iconSize: 40.0,
-            onPressed: () {
-              // context.read<SignalsSelectionCubit>().setSignalsSelectionChoice('postponement');
-              context.go('/definition_screen');
-            }),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-              // color: Colors.white,
-            ),
-            onPressed: () => context.go('/settings_screen'),
+          ],
+          centerTitle: true,
+          title: Text(
+            'Sailing Racing Signals',
+            style: TextStyle(
+                fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
+                    responsiveAdaptiveClass.selectAppBarTitleFontSize(1.0)),
           ),
-        ],
-        centerTitle: true,
-        title: Text(
-          'Sailing Racing Signals',
-          style: TextStyle(
-              fontSize: responsiveAdaptiveClass.appBarTitleFontSize =
-                  responsiveAdaptiveClass.selectAppBarTitleFontSize(1.0)),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('lib/assets/images/ocean_background.png'),
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                opacity: 1.0,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
                 image: AssetImage('lib/assets/images/ocean_background.png'),
-                fit: BoxFit.cover)),
-        child: ListView.builder(
-          itemCount: signalsTitles.length,
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<SignalsSelectionCubit>()
-                        .setSignalsSelectionChoice(signalsNames[index]);
-                    setState(() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ResultsScreen(),
-                        ),
-                      );
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 10.0,
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 3.0, style: BorderStyle.solid),
-                      borderRadius: BorderRadius.circular(35.0),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  opacity: 1.0,
+                  image: AssetImage('lib/assets/images/ocean_background.png'),
+                  fit: BoxFit.cover)),
+          child: ListView.builder(
+            itemCount: signalsTitles.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<SignalsSelectionCubit>()
+                          .setSignalsSelectionChoice(signalsNames[index]);
+                      setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ResultsScreen(),
+                          ),
+                        );
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      // foregroundColor: Colors.white,
+                      // backgroundColor: Colors.white,
+                      elevation: 10.0,
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 3.0, style: BorderStyle.solid),
+                        borderRadius: BorderRadius.circular(35.0),
+                      ),
                     ),
-                  ),
-                  child: Container(
-                    height: 150.0, // Adjust the height as needed
-                    width: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(35.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(35.0),
+                          right: Radius.circular(35.0),
+                        ),
+                      ),
+                      height: 150.0, // Adjust the height as needed
+                      width: double.infinity,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(35.0),
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                signalsImage[index], // Replace with your actual image path
-                                fit: BoxFit.scaleDown,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  signalsImage[index], // Replace with your actual image path
+                                  fit: BoxFit.fitHeight,
+                                ),
                               ),
                             ),
                           ),
-                        ),
 
-                        // Dark blue gradient with white text
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [
-                                  Color(0xFF2D9596),
-                                  Color(0xFF265073),
-                                ],
-                                stops: [0.0, 0.9],
+                          // Dark blue gradient with white text
+                          Expanded(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Color(0xFF2D9596),
+                                    Color(0xFF265073),
+                                  ],
+                                  stops: [0.0, 0.9],
+                                ),
+                                borderRadius: BorderRadius.horizontal(
+                                  right: Radius.circular(35.0),
+                                ),
                               ),
-                              borderRadius: BorderRadius.horizontal(
-                                right: Radius.circular(35.0),
-                              ),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  signalsTitles[index],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: responsiveAdaptiveClass.classFontSize =
-                                        responsiveAdaptiveClass.selectFontSize(1.0),
-                                    fontWeight: FontWeight.bold,
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      signalsTitles[index],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: responsiveAdaptiveClass.classFontSize =
+                                            responsiveAdaptiveClass.selectFontSize(1.0),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
